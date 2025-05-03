@@ -67,4 +67,38 @@ public class Targeter : MonoBehaviour
             enemies.Remove(enemy);
         }
     }
+
+    public Enemy GetClosestEnemy(Vector3 point)
+    {
+        //Lowest distance we've found so far:
+        float lowestDistance = Mathf.Infinity;
+
+        //Enemy that had the lowest distance found so far:
+        Enemy enemyWithLowestDistance = null;
+
+        //Loop Through Enemies;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            var enemy = enemies[i]; //Current Enemy
+            //If enemy has been destroyed or is already dead
+            if (enemy == null || !enemy.alive)
+            {
+                //Remove it and continue the loop at the same index:
+                enemies.RemoveAt(i);
+                i -= 1;
+            }
+            else
+            {
+                //Get distance from the enemy to the given point:
+                float dist = Vector3.Distance(point, enemy.trans.position);
+
+                if (dist < lowestDistance)
+                {
+                    lowestDistance = dist;
+                    enemyWithLowestDistance = enemy;
+                }
+            }
+        }
+        return enemyWithLowestDistance;
+    }
 }

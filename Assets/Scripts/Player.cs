@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     [Range(0, .99f)]
     public float movementSmoothing = .9f;
 
-    //Current positionthe camera is moving towards:
+    //Current position the camera is moving towards:
     private Vector3 targetPosition;
 
     [Header("Scrolling")]
@@ -96,12 +96,12 @@ public class Player : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        //Clamp the target postion to the bounds variables:
+        //Clamp the target position to the bounds variables:
         targetPosition.x = Mathf.Clamp(targetPosition.x, minimumX, maximumX);
         targetPosition.y = Mathf.Clamp(targetPosition.y, minimumY, maximumY);
         targetPosition.z = Mathf.Clamp(targetPosition.z, minimumZ, maximumZ);
 
-        //If we aren't already at the target postion, move towards it:
+        //If we aren't already at the target position, move towards it:
         if(trans.position != targetPosition)
         {
             trans.position = Vector3.Slerp(trans.position, targetPosition, 1-movementSmoothing);
