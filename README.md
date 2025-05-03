@@ -12,4 +12,6 @@ Created Arrow prefab and attached SeekingProjectile to it.
 Update 0.02: Created Targeter script and began coding it for the towers.
 
 Update 0.03: Finished Targeter Script, created Tower script, created TargetingTower Script, Created Arrow Tower GameObject, attached Targeter Script to Arrow Tower
-Targeter component, created FiringTower script, attached FiringTower Script to Arrow Tower GameObject and set it's componnents to the required components,
+Targeter component, created FiringTower script, attached FiringTower Script to Arrow Tower GameObject and set it's components to the required components,
+
+Update 0.03A: Saved Unity scene to close the program so I can go on break, corrected spelling in README md.
