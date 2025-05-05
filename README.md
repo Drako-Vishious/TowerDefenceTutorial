@@ -15,3 +15,5 @@ Update 0.03: Finished Targeter Script, created Tower script, created TargetingTo
 Targeter component, created FiringTower script, attached FiringTower Script to Arrow Tower GameObject and set it's components to the required components,
 
 Update 0.03A: Saved Unity scene to close the program so I can go on break, corrected spelling in README md.
+
+Update 0.04: Created UI, button panel and buttons to purchase towers, button panel and button to sell buttons, and a panel to tell how much gold player has.
