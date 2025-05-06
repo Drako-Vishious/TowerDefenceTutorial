@@ -17,3 +17,5 @@ Targeter component, created FiringTower script, attached FiringTower Script to A
 Update 0.03A: Saved Unity scene to close the program so I can go on break, corrected spelling in README md.
 
 Update 0.04: Created UI, button panel and buttons to purchase towers, button panel and button to sell buttons, and a panel to tell how much gold player has.
+
+Update 0.05: Created Game Script, Created Highlighter GameObject, created several functions in Game Script. Filled out 1/3 of the functions needed. Attached Game Script to EmptyGameOBject Game.
