@@ -117,14 +117,53 @@ public class Game : MonoBehaviour
             clickedButtonImage.color = selectedBuildButtonColor;
         }
     }
-    void PositionSellPanel() { }
-
-    void UpdateCurrentGold() { }
 
 
-    void DeselectTower() { }
+    void PositionSellPanel()
+    {
+        //If there is a selected Tower:
+        if(selectedTower != null)
+        {
+            //Convert tower world position, moved by 8 units, to screen space:
+            var screenPosition = Camera.main.WorldToScreenPoint(selectedTower.transform.position + Vector3.forward * 8);
+            //Apply the position ot the tower selling panel:
+            towerSellingPanel.position = screenPosition;
+        }
+    }
 
-    void DeselectBuildButton() { }
+
+    void UpdateCurrentGold()
+    {
+        //If the gold has changed since last frame, update the text to match:
+        if(gold != goldLastFrame)
+        {
+            currentGoldText.text = gold + " gold";
+
+            ///Keep track of the gold value in each frame:
+            goldLastFrame = gold;
+        }
+    }
+
+
+    public void DeselectTower()
+    {
+        //Null selected tower and hide the sell tower panel:
+        selectedTower = null;
+        towerSellingPanel.gameObject.SetActive(false);
+    }
+
+    void DeselectBuildButton()
+    {
+        //Nul the tower prefab to build, if there is one:
+        towerPrefabToBuild = null;
+
+        //Reset the color of the selected button, if there is one:
+        if(selectedBuildButtonImage != null)
+        {
+            selectedBuildButtonImage.color = Color.white;
+            selectedBuildButtonImage = null;
+        }
+    }
 
     void PositionHighlighter()
     {
@@ -172,6 +211,34 @@ public class Game : MonoBehaviour
     }
 
     
+    public void OnSellTowerButtonClicked()
+    {
+        //If there is a selected tower, sell it:
+        if(selectedTower != null)
+        {
+            SellTower(selectedTower);
+        }
+    }
+
+
+    void SellTower(Tower tower)
+    {
+        //Since it's not going to exist in a bit, deselect the tower:
+        DeselectTower();
+        //Refund the player:
+        gold += Mathf.CeilToInt(tower.goldCost * tower.refundFactor);
+
+        //Remove the tower from the dictionary using its position:
+        towers.Remove(tower.transform.position);
+
+        //Destroy the tower GameObject:
+        Destroy(tower.gameObject);
+
+        //Refresh pathfinding
+        UpdateEnemyPath();
+    }
+
+
     void BuildModeLogic()
     {
         PositionHighlighter();
